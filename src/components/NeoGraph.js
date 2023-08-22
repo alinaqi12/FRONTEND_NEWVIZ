@@ -3,6 +3,7 @@ import useResizeAware from "react-resize-aware";
 import PropTypes from "prop-types";
 import Neovis from "neovis.js/dist/neovis.js";
 
+
 const NeoGraph = (props) => {
   const {
     width,
@@ -27,9 +28,17 @@ const NeoGraph = (props) => {
           label: "CNIC",
         },
       },
-  
       initial_cypher:
-        "use testingdb MATCH (p:Person)-[t:tax_info]->() return p,t limit 15",
+        "use testingdb MATCH path=(p:Person)-[t]->() return p,t,path ",
+      // Define the node colors here
+      colors: {
+        Person: {
+          background: "#FF5733", // Change this to the desired color
+          highlight: {
+            background: "#FF5733", // Change this to the desired highlight color
+          },
+        },
+      },
     };
     const vis = new Neovis(config);
     vis.render();
@@ -40,9 +49,9 @@ const NeoGraph = (props) => {
       id={containerId}
       ref={visRef}
       style={{
-        width: `${width}px`,
-        height: `${height}px`,
-        backgroundColor: `${backgroundColor}`,
+        width: "98vw",
+        height: "97vh",
+        backgroundColor: "#00003e"
       }}
     />
   );
@@ -78,7 +87,9 @@ const ResponsiveNeoGraph = (props) => {
 };
 
 ResponsiveNeoGraph.defaultProps = {
-  backgroundColor: "#d3d3d3",
+  width: 600,
+  height: 600,
+  backgroundColor: "#00003e",
 };
 
 ResponsiveNeoGraph.propTypes = {

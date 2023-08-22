@@ -16,7 +16,8 @@
     }
   },
   "dependencies": {
-    "neovis.js": "^1.4.0",
+    "neo4j-driver": "^5.11.0",
+    "neovis.js": "^1.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
